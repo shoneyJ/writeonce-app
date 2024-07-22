@@ -1,0 +1,49 @@
+services:
+  writeonce-frontend:
+    build: .
+    image: writeonce-frontend
+    container_name: writeonce-frontend-container
+    ports:
+      - 80:80
+      - 443:443
+    restart: unless-stopped
+    volumes:
+      - ./nginx/conf/:/etc/nginx/conf.d/:ro
+      - certbot-var:/var/www/certbot/:ro
+      - certbot-etc:/etc/nginx/ssl/:ro
+      - /home/shoney/writeonce/writeonce-frontend/dhparam/:/etc/ssl/certs/
+    networks:
+      - default
+        # ipv4_address: 172.20.128.2
+  
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - certbot-var:/var/www/certbot/:rw
+      - certbot-etc:/etc/letsencrypt/:rw
+    depends_on:
+      - writeonce-frontend
+    command: certonly --webroot --webroot-path=/var/www/certbot/ --email shoney.john@outlook.com --agree-tos --no-eff-email --force-renewal -d writeonce.de  -d www.writeonce.de 
+  
+volumes:
+  certbot-etc:
+  certbot-var:
+
+networks:
+  default:
+    name: writeonce-network
+    driver: bridge
+    # ipam:
+    #   config:
+    #     - subnet: 172.20.0.0/16
+    #       gateway: 172.20.0.1
+  
+  # default:
+  #   driver: bridge
+  #   ipam:
+  #     config:
+  #       - subnet: 172.20.0.0/16
+
+
+
+
