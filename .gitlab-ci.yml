@@ -3,11 +3,3 @@ default:
   before_script:
     - docker info
     - echo "this ran"
-
-build:
-  stage: build
-  before_script:
-    - mkdir -p $HOME/.docker
-    - echo $DOCKER_AUTH_CONFIG > $HOME/.docker/config.json
-  script:
-    - docker build -t registry.writeonce.de/shoney/writeonce-app .
