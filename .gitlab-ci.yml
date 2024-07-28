@@ -1,6 +1,7 @@
 default:
   before_script:
-    - echo "Registry authentication"
+    - echo "check docker health"
+    - docker info
     - mkdir -p $HOME/.docker
     - echo $DOCKER_AUTH_CONFIG > $HOME/.docker/config.json
 build:
