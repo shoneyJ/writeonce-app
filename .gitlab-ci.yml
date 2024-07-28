@@ -1,8 +1,9 @@
-build:
-  stage: build
+default:
   before_script:
-    - "Build started .."
+    - echo "Registry authentication"
     - mkdir -p $HOME/.docker
     - echo $DOCKER_AUTH_CONFIG > $HOME/.docker/config.json
+build:
+  stage: build  
   script:
     - docker build -t registry.writeonce.de/shoney/writeonce-app .
