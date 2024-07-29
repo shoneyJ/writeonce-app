@@ -9,13 +9,14 @@ stages:
   - build
   - deploy
 variables: 
-  IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+  IMAGE_NAME: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
 build:
   stage: build  
   script:
     - echo  $IMAGE_TAG 
-    - docker build -t $IMAGE_TAG .
-    - docker push $IMAGE_TAG
+    - docker build -t ${IMAGE_NAME} .
+    - echo "Pushing Docker image to GitLab container registry..."
+    - docker push ${IMAGE_NAME}
 
 
 deploy:
