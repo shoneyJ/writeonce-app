@@ -4,7 +4,21 @@ default:
     - docker info
     - mkdir -p $HOME/.docker
     - echo $DOCKER_AUTH_CONFIG > $HOME/.docker/config.json
+
+stages:
+  - build
+  - deploy
+variables: 
+  IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
 build:
   stage: build  
   script:
-    - docker build -t registry.writeonce.de/shoney/writeonce-app .
+    - docker build -t IMAGE_TAG .
+    - docker push $IMAGE_TAG
+
+
+deploy:
+    stage: deploy
+    script:
+      - docker run -d --name= $IMAGE_TAG  writeonce-frontend-container -v /tmp:/app/dist/browser
+      - docker cp /tmp writeonce-webserver:/usr/share/nginx/html/
