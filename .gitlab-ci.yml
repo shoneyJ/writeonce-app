@@ -2,8 +2,7 @@ default:
   before_script:
     - echo "check docker health"
     - docker info
-    - mkdir -p $HOME/.docker
-    - echo $DOCKER_AUTH_CONFIG > $HOME/.docker/config.json
+
 
 stages:
   - build
