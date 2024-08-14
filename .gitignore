@@ -45,3 +45,4 @@ obj/
 
 *.pem
 *.sh
+!deploy.sh
