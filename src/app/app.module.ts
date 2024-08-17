@@ -11,6 +11,8 @@ import { FooterComponent } from './footer/footer.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
+import { RepositoryViewerComponent } from './repository-viewer/repository-viewer.component';
+import { RepositoryListComponent } from './repository-list/repository-list.component';
 
 
 
@@ -23,7 +25,9 @@ import { HomeComponent } from './home/home.component';
     FooterComponent,
     AboutComponent,
     ContactComponent,
-    HomeComponent
+    HomeComponent,
+    RepositoryViewerComponent,
+    RepositoryListComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
