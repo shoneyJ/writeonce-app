@@ -3,10 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { ArticleComponent } from './article/article.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { HomeComponent } from './home/home.component';
 const routes: Routes = [
-  { path: 'your-new-component', component: ArticleComponent },
+  { path: ':title', component: ArticleComponent },
   { path: 'about', component: AboutComponent }, 
-  { path: 'contact', component: ContactComponent }, 
+  { path: 'contact', component: ContactComponent },
+  { path: '', component: HomeComponent },  
   // other routes can go here
 ];
 
