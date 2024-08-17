@@ -6,6 +6,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { ArticleComponent } from './article/article.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
 
 
 
@@ -13,7 +17,11 @@ import { ArticleComponent } from './article/article.component';
   declarations: [
     AppComponent,
     NavigationBarComponent,
-    ArticleComponent
+    ArticleComponent,
+    HeaderComponent,
+    FooterComponent,
+    AboutComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
