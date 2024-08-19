@@ -38,5 +38,5 @@ tmp
 *.tmp
 
 # Docker-related files
-Dockerfile
+Dockerfile*
 .dockerignore

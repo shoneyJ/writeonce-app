@@ -7,19 +7,23 @@ import { Observable } from 'rxjs';
 })
 export class GitlabService {
   private baseUrl = 'https://git.writeonce.de/api/v4'; // GitLab API base URL
-  private projectId = '7'; // Replace with your project ID
+
 
   constructor(private http: HttpClient) { }
 
-  getProject(): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/projects/${this.projectId}`);
+  getProject(id: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/projects/${id}`);
   }
 
-  getRepositoryTree(): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/projects/${this.projectId}/repository/tree`);
+  getRepositoryTree(id: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/projects/${id}/repository/tree`);
   }
 
   getPublicRepositories(): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/projects?visibility=public`);
+  }
+
+  getRepositoryLanguages(id: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/projects/${id}/languages`);
   }
 }

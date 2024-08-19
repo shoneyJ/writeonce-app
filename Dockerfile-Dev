@@ -1,4 +1,4 @@
-FROM node:latest as build
+FROM node:18 as build
 RUN npm install -g @angular/cli
 RUN mkdir -p /app
 WORKDIR /app
