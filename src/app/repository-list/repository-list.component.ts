@@ -40,7 +40,9 @@ export class RepositoryListComponent implements OnInit {
       this.gitlabService.getRepositoryLanguages(r.id).subscribe(
         (languagesData) => {
           // Assuming you want to store languages for each repository
-          r.languages = languagesData;
+      
+            r.languages = languagesData;
+            console.log(languagesData)
         },
         (error) => console.error(`Failed to get languages for repository ${r.Id}:`, error)
       );
@@ -50,8 +52,13 @@ export class RepositoryListComponent implements OnInit {
     );
   }
 
+  isValid(entry: { key: any, value: any }):boolean{
+   
+    return typeof entry.key === 'string';
+  }
+
   getTechIcon(language: string): IconDefinition  {
-    
+    console.log('hit it')
     return this.TECH_ICONS[language] || faQuestionCircle;
   }
 }

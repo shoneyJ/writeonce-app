@@ -1,19 +1,14 @@
-<!-- 
-<a
-routerLink="/your-new-component"
-  target="_blank"
-  rel="noopener noreferrer"
-  class="text-blue-500 hover:text-blue-700 underline hover:no-underline transition-all duration-200 ease-in-out"
->
-  Self host Gitlab | Nginx | Docker
-</a>
- -->
-
-<!-- src/app/app.component.html -->
-<app-header></app-header>
-<main class="container mx-auto my-8">
-  <!-- Your main content goes here -->
-  <router-outlet></router-outlet>
-</main>
-<app-footer></app-footer>
-
+<body class="flex flex-col min-h-screen">
+  <app-header class="bg-gray-800 text-white p-4">
+    <!-- Header content -->
+  </app-header>
+  
+  <main class="flex-1 container mx-auto my-8">
+    <!-- Your main content goes here -->
+    <router-outlet></router-outlet>
+  </main>
+  <app-footer class="bg-gray-800 text-white p-4">
+    <!-- Footer content -->
+  </app-footer>
+  
+</body>

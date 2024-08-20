@@ -12,7 +12,10 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
 import { RepositoryListComponent } from './repository-list/repository-list.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faLinkedin as faLinkedinBrands } from '@fortawesome/free-brands-svg-icons';
 
 
 
@@ -37,4 +40,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  constructor(library: FaIconLibrary) {
+    library.addIcons(faEnvelope, faPhone, faLinkedinBrands);
+  }
+}
