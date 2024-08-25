@@ -16,6 +16,7 @@ import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontaweso
 
 import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedin as faLinkedinBrands } from '@fortawesome/free-brands-svg-icons';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -35,7 +36,8 @@ import { faLinkedin as faLinkedinBrands } from '@fortawesome/free-brands-svg-ico
     BrowserModule, 
     HttpClientModule,
     AppRoutingModule,
-    FontAwesomeModule	
+    FontAwesomeModule,
+    FormsModule	
   ],
   providers: [],
   bootstrap: [AppComponent]

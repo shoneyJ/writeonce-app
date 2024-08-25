@@ -1,10 +1,10 @@
 services:
-  writeonce-frontend:
+  writeonce-frontend-dev:
     build: 
       context: .
       dockerfile: Dockerfile-Dev
     image: writeonce-frontend:dev
-    container_name: writeonce-frontend-container
+    container_name: writeonce-frontend-dev
     ports:
       - 4200:4200
     

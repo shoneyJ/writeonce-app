@@ -28,13 +28,26 @@
             <h3 class="text-xl font-bold mb-2">Food</h3>
             <p class="text-gray-600">Discover delicious recipes, culinary tips.</p>
           </div>
-          <ul class="list-disc list-inside p-4">
-            <li class="mb-2">
-              <a routerLink="blog/no-sugar-gajar-ka-halva" class="text-blue-600 hover:underline">
-                No Sugar - Gajar ka Halva
-              </a>
-            </li>
-          </ul>
+          <div class="p-4">
+            <ul class="list-disc list-inside">
+              <li *ngFor="let item of items; let i = index" class="mb-2">
+                <ng-container *ngIf="!item.isEditing; else editMode">
+                  <a *ngIf="item.link" [routerLink]="item.link" class="text-blue-600 hover:underline">
+                    {{ item.text }}
+                  </a>
+                  <span *ngIf="!item.link">{{ item.text }}</span>
+                </ng-container>
+                <ng-template #editMode>
+                  <input [(ngModel)]="item.text" (blur)="saveItem(i)" class="border p-1" />
+                </ng-template>
+              </li>
+            </ul>
+            <button (click)="addItem()" class="text-blue-600 hover:underline mt-4">
+              <i class="fas fa-plus"></i> Add Item
+            </button>
+          </div>
+          
+          
         </div>
   
         <!-- Travel Panel -->
