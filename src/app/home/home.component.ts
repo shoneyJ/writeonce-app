@@ -42,6 +42,7 @@ export class HomeComponent implements OnInit {
 
     this.data['id'] = this.writeoncedbService.convertTextToDocId(item.text);
     this.data['title'] = item.text;
+    this.data['category'] = "Food";
     this.writeoncedbService.insert(this.data['id'], this.data);
 
 

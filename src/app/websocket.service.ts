@@ -7,7 +7,7 @@ export class WebsocketService {
   private socket: WebSocket;
 
   constructor() {
-    this.socket = new WebSocket('wss://api.writeonce.de');
+    this.socket = new WebSocket('wss://api.writeonce.de/ws/');
     this.connect();
   }
 
@@ -17,7 +17,6 @@ export class WebsocketService {
     // Set up event listeners
     this.socket.onopen = () => {
       console.log('WebSocket connection opened');
-      this.sendMessage();
     };
 
     this.socket.onmessage = (event) => {
@@ -31,16 +30,6 @@ export class WebsocketService {
     this.socket.onclose = (event) => {
       console.log('WebSocket connection closed:', event);
     };
-  }
-
-  private sendMessage(): void {
-    const message = 'insert into writteonce-blog-user of doc id:user:1; json ={"name": "shoney", "age": 30}.';
-    if (this.socket.readyState === WebSocket.OPEN) {
-      this.socket.send(message);
-      console.log('Message sent:', message);
-    } else {
-      console.error('WebSocket is not open. Message not sent.');
-    }
   }
 
   // Optionally, you can add more methods to handle sending and receiving messages
