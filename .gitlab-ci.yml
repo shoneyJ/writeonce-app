@@ -18,8 +18,8 @@ build:
     - docker push ${IMAGE_NAME}
 
 
-deploy:
-    stage: deploy
-    script:
-      - docker run -d --name= $IMAGE_TAG  writeonce-frontend-container -v /tmp:/app/dist/browser
-      - docker cp /tmp writeonce-webserver:/usr/share/nginx/html/
+# deploy:
+#     stage: deploy
+#     script:
+#       - docker run -d --name= $IMAGE_TAG  writeonce-frontend-container -v /tmp:/app/dist/browser
+#       - docker cp /tmp writeonce-webserver:/usr/share/nginx/html/
