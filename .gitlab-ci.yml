@@ -1,6 +1,6 @@
 default:
   before_script:
-    - echo "check docker health"
+    - echo "check docker health!"
     - docker info
 
 
