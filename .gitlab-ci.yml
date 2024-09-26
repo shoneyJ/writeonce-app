@@ -1,3 +1,7 @@
+before_script:
+  # Switch user to ubuntu and run a command
+  - echo "Switching to ubuntu user"
+  - sudo -u ubuntu whoami
 stages:
   - verify
   - build
