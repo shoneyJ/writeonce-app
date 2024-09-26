@@ -1,9 +1,3 @@
-default:
-  before_script:
-    - echo "check docker health"
-    - docker info
-
-
 stages:
   - build
   - deploy
