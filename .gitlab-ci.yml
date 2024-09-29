@@ -3,7 +3,8 @@ before_script:
   - apk update && apk add --no-cache docker openrc
   # Enable and start Docker service
   - rc-update add docker boot
-  - rc-service docker start
+ # Check Docker status and start only if not running
+  - if ! rc-service docker status; then rc-service docker start; fi
   # Verify Docker installation
   - docker info
 stages:
