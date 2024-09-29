@@ -3,6 +3,8 @@ before_script:
   - apk update && apk add --no-cache docker openrc
   # Enable and start Docker service
   - rc-update add docker boot
+  - mkdir -p $HOME/.docker
+  - echo $DOCKER_AUTH_CONFIG > $HOME/.docker/config.json
 
   # Verify Docker installation
   - docker info
