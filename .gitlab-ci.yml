@@ -1,7 +1,11 @@
-# before_script:
-#   # Switch user to ubuntu and run a command
-#   - echo "Switching to ubuntu user"
-#   - sudo -u ubuntu whoami
+before_script:
+  # Install Docker in the Alpine container
+  - apk update && apk add --no-cache docker openrc
+  # Enable and start Docker service
+  - rc-update add docker boot
+  - rc-service docker start
+  # Verify Docker installation
+  - docker info
 stages:
   - verify
   - build
