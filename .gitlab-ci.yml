@@ -12,8 +12,7 @@ before_script:
 
 stages:
   - verify
-  - build
-  - deploy
+  - build-deploy
 variables: 
   IMAGE_NAME: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
 verify:
@@ -22,21 +21,13 @@ verify:
     - echo "user"
     - whoami
     - cat /etc/os-release
-build:
-  stage: build  
+build-deploy:
+  stage: build-deploy  
   script:
-    - echo "System Username:"
-
-    - echo  $IMAGE_TAG 
     - docker build -t ${IMAGE_NAME} .
-
-
-deploy:
-    stage: deploy
-    script:
-      - eval $(ssh-agent -s)
-      - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-      - docker run --rm registry.writeonce.de/shoney/writeonce-app sh -c "tar -czf - -C browser . "
-       | ssh -o StrictHostKeyChecking=no deployer@writeonce.de 'docker exec -i writeonce-webserver tar -xzf - -C /usr/share/nginx/html/'
-      - docker cp /tmp writeonce-webserver:/usr/share/nginx/html/
-      - ssh-agent -k
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - docker run --rm registry.writeonce.de/shoney/writeonce-app sh -c "tar -czf - -C browser . "
+      | ssh -o StrictHostKeyChecking=no deployer@writeonce.de 'docker exec -i writeonce-webserver tar -xzf - -C /usr/share/nginx/html/'
+    - docker cp /tmp writeonce-webserver:/usr/share/nginx/html/
+    - ssh-agent -k
