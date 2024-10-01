@@ -20,6 +20,5 @@ build-deploy:
     - docker build -t ${IMAGE_NAME} .
     - eval $(ssh-agent -s)
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-    - docker run --rm ${IMAGE_NAME} sh -c "tar -czf - -C browser . " | ssh -o StrictHostKeyChecking=no deployer@writeonce.de 'docker exec -i writeonce-webserver tar -xzf - -C /usr/share/nginx/html/'
-    - docker cp /tmp writeonce-webserver:/usr/share/nginx/html/
+    - docker run --rm ${IMAGE_NAME} sh -c "tar -czf - -C browser . " | ssh -o StrictHostKeyChecking=no deployer@writeonce.de 'docker exec -i writeonce-webserver tar -xzf - -C /usr/share/nginx/html/
     - ssh-agent -k
