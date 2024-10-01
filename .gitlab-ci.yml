@@ -3,8 +3,31 @@ before_script:
   - apk update && apk add --no-cache docker openrc
   # Enable and start Docker service
   - rc-update add docker boot
-  # Verify Docker installation
-  - docker info
+  ##
+  ## Install ssh-agent if not already installed, it is required by Docker.
+  ## (change apt-get to yum if you use an RPM-based image)
+  ##
+  - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
+
+  ##
+  ## Run ssh-agent (inside the build environment)
+  ##
+  - eval $(ssh-agent -s)
+
+   ##
+  ## Create the SSH directory and give it the right permissions
+  ##
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+
+    ##
+  ## Give the right permissions, otherwise ssh-add will refuse to add files
+  ## Add the SSH key stored in SSH_PRIVATE_KEY file type CI/CD variable to the agent store
+  ##
+  - chmod 400 "$SSH_PRIVATE_KEY"
+  - ssh-add "$SSH_PRIVATE_KEY"
+
+
 stages:
   - verify
   - build
@@ -24,12 +47,11 @@ build:
 
     - echo  $IMAGE_TAG 
     - docker build -t ${IMAGE_NAME} .
-    - echo "Pushing Docker image to GitLab container registry..."
-    - docker push ${IMAGE_NAME}
 
 
-# deploy:
-#     stage: deploy
-#     script:
-#       - docker run -d --name= $IMAGE_TAG  writeonce-frontend-container -v /tmp:/app/dist/browser
-#       - docker cp /tmp writeonce-webserver:/usr/share/nginx/html/
+deploy:
+    stage: deploy
+    script:
+      - docker run --rm registry.writeonce.de/shoney/writeonce-app sh -c "tar -czf - -C browser . "
+       | ssh -o StrictHostKeyChecking=no deployer@writeonce.de 'docker exec -i writeonce-webserver tar -xzf - -C /usr/share/nginx/html/'
+      - docker cp /tmp writeonce-webserver:/usr/share/nginx/html/
