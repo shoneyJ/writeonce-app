@@ -11,16 +11,9 @@ before_script:
 
 
 stages:
-  - verify
   - build-deploy
 variables: 
   IMAGE_NAME: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
-verify:
-  stage: verify
-  script: 
-    - echo "user"
-    - whoami
-    - cat /etc/os-release
 build-deploy:
   stage: build-deploy  
   script:
