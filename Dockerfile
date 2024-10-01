@@ -13,3 +13,12 @@ RUN npm install
 COPY . .
 # Generate the build of the application
 RUN npm run build --prod --output=dist
+
+# Stage 2: Create a minimal image with only the dist folder
+FROM alpine:latest
+
+# Set the working directory in the new minimal image
+WORKDIR /app
+
+# Copy the built application from the previous stage
+COPY --from=build /app/dist ./
