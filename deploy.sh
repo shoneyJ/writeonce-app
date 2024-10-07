@@ -11,7 +11,7 @@ DIST_DIR="dist/browser"
 
 # Step 1: Build Angular application
 echo "Building Angular application..."
-docker build -t $BUILD_IMAGE -f Dockerfile.build .
+docker build -t $BUILD_IMAGE -f Dockerfile .
 
 # Step 2: Create output directory if it doesn't exist
 mkdir -p $OUTPUT_DIR
