@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, Input} from '@angular/core';
+import 'prismjs';
+import 'prismjs/themes/prism-tomorrow.css'; 
 
 @Component({
   selector: 'app-article-code-snippet',
@@ -6,10 +8,13 @@ import { Component } from '@angular/core';
   styleUrl: './article-code-snippet.component.css'
 })
 export class ArticleCodeSnippetComponent {
-  codeSnippet: string = `
-  function helloWorld() {
-      console.log("Hello, World!");
+  @Input() codeSnippet: string = ``;
+
+  @Input() title: string = "";
+
+  AfterViewInit() {
+    // Highlight the code after view initialization
+    (window as any).Prism.highlightAll();
   }
-  `;
 
 }
