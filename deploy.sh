@@ -7,7 +7,7 @@ set -e
 BUILD_IMAGE="blog-app-build"
 NGINX_CONTAINER_NAME="writeonce-webserver"
 OUTPUT_DIR="dist"
-DIST_DIR="dist/browser"
+DIST_DIR="browser"
 
 # Step 1: Build Angular application
 echo "Building Angular application..."
