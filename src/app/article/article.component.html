@@ -1,10 +1,24 @@
 <div class="container mx-auto my-8">
-    <!-- <h1 class="text-4xl font-bold">{{ title | titlecase }}</h1> -->
-    <div class="mt-4">
-      <!-- Blog content will be loaded here -->
-      <p>Loading content for: "{{ title }}"...</p>
+  <h1 class="text-4xl font-bold">{{ article.title | titlecase }}</h1>
+  <article-img-caption
+  [imgSrc]="content.img.path" 
+  [caption]="content.img.caption">
+</article-img-caption>
 
-      <div class="mt-4" [innerHTML]="content"></div>
-    </div>
-  </div>
-  
+<app-article-section *ngFor="let section of content.sections"
+[heading]="section.heading" 
+  [paragraphs]="section.paragraphs">
+></app-article-section>
+
+<app-article-code-snippet></app-article-code-snippet>
+
+
+<app-article-references
+[references]="article.references" 
+></app-article-references>
+
+ <app-article-signature
+ [authorName]="article.author" 
+  [publishedTimestamp]="article.publishedOn"></app-article-signature>
+
+</div>

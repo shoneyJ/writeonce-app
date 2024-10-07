@@ -1,0 +1,41 @@
+[
+    {
+        "title": "Auto scale gitlab runner using AWS spot instance",
+        "systitle": "auto-scale-gitlab-runner-using-aws-spot-instance",
+        "content": {
+            "img": {
+                "path": "assets/images/auto-scale-gitlab-runner.webp",
+                "caption": "Auto scale gitlab runner using AWS spot instance, AI generated image"
+            },
+            "sections": [
+                {
+                    "heading": "Configuring gitlab runner instance in AWS",
+                    "paragraphs": [
+                        "We will need to first install the gitlab runner"
+                    ]
+                },
+                {
+                    "heading": "Work in progress",
+                    "paragraphs": [
+                        "Thank you"
+                    ]
+                }
+            ],
+            "codes": [
+                {
+                    "language": "language-javascript"
+
+                }
+            ]
+        },
+        "author": "Shoney Arickathil",
+        "publishedOn": 1728338332,
+        "references": [
+            {
+                "title": "Understanding Angular",
+                "url": "https://angular.io/guide/what-is-angular",
+                "dateAccessed": 1728338332
+            }
+        ]
+    }
+]

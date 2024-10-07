@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { ArticleService } from '../services/article.service';
 
 @Component({
   selector: 'app-article',
@@ -9,20 +10,30 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 })
 export class ArticleComponent implements OnInit {
   title: string | null = null;
-
-  constructor(private route: ActivatedRoute,private sanitizer: DomSanitizer) { }
-  content: SafeHtml = '';  // Use SafeHtml type for sanitized content
+  article: any;
+  content: any;
+  constructor(
+    private route: ActivatedRoute,
+    private sanitizer: DomSanitizer,
+    private articleService: ArticleService
+  ) { }
+ 
   ngOnInit(): void {
+
     this.route.paramMap.subscribe(params => {
-      this.title = params.get('title');
+      this.title = params.get('systitle');
       this.loadBlogPost(this.title);
     });
   }
 
-  loadBlogPost(title: string | null): void {
-    // Logic to determine category or load the blog post based on the title
-    // Example: you might load different data based on the title or parse the title to determine the category
-    this.content = this.sanitizer.bypassSecurityTrustHtml('<p>Planning your next adventure? Check out our list of the <strong>top 10 travel destinations for 2024</strong>, featuring breathtaking landscapes, vibrant cultures, and unforgettable experiences.</p>')
+  loadBlogPost(systitle: string | null): void {
+ 
+    this.articleService.getArticles().subscribe(articles => {
+      // Find the article by title
+      this.article = articles.find((article: any) => article.systitle === systitle);
+      this.content = this.article.content;
+    });
+    
   
   }
 

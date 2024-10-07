@@ -17,6 +17,11 @@ import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontaweso
 import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedin as faLinkedinBrands } from '@fortawesome/free-brands-svg-icons';
 import { FormsModule } from '@angular/forms';
+import { ArticleImgCaptionComponent } from './article/article-img-caption/article-img-caption.component';
+import { ArticleSectionComponent } from './article/article-section/article-section.component';
+import { ArticleSignatureComponent } from './article/article-signature/article-signature.component';
+import { ArticleReferencesComponent } from './article/article-references/article-references.component';
+import { ArticleCodeSnippetComponent } from './article/article-code-snippet/article-code-snippet.component';
 
 
 
@@ -30,7 +35,12 @@ import { FormsModule } from '@angular/forms';
     AboutComponent,
     ContactComponent,
     HomeComponent,
-    RepositoryListComponent
+    RepositoryListComponent,
+    ArticleImgCaptionComponent,
+    ArticleSectionComponent,
+    ArticleSignatureComponent,
+    ArticleReferencesComponent,
+    ArticleCodeSnippetComponent
   ],
   imports: [
     BrowserModule, 
