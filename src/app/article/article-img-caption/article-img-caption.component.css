@@ -1,6 +1,6 @@
 .article-img-caption {
     text-align: center;
-    margin: 20px;
+
   }
   
   .article-img-caption img {
@@ -8,9 +8,9 @@
     height: 600px;
   }
   
-  .caption {
+  /* .caption {
     font-size: 1.1em;
     color: #555;
     margin-top: 8px;
-  }
+  } */
   

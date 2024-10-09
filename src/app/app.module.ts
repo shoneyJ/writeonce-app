@@ -22,6 +22,7 @@ import { ArticleSectionComponent } from './article/article-section/article-secti
 import { ArticleSignatureComponent } from './article/article-signature/article-signature.component';
 import { ArticleReferencesComponent } from './article/article-references/article-references.component';
 import { ArticleCodeSnippetComponent } from './article/article-code-snippet/article-code-snippet.component';
+import { ScreenShotImageComponent } from './article/screen-shot-image/screen-shot-image.component';
 
 
 
@@ -40,7 +41,8 @@ import { ArticleCodeSnippetComponent } from './article/article-code-snippet/arti
     ArticleSectionComponent,
     ArticleSignatureComponent,
     ArticleReferencesComponent,
-    ArticleCodeSnippetComponent
+    ArticleCodeSnippetComponent,
+    ScreenShotImageComponent
   ],
   imports: [
     BrowserModule, 

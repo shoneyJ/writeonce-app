@@ -1,6 +1,19 @@
-<ul class="list-disc pl-5">
-    <li *ngFor="let reference of references">
-      <a [href]="reference.url" target="_blank" class="text-blue-600 hover:underline">{{ reference.title }}</a> 
-      <span class="text-gray-500">(Accessed on {{ reference.accessedOnDate | date:'fullDate' }})</span>
-    </li>
-  </ul>
+<div class="max-w-2xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+  <div class="px-6 py-4">
+    <!-- Title with Copy Button aligned horizontally -->
+    <div class="flex items-center justify-between">
+      <div class="font-bold text-xl mb-2">References</div>
+     
+    </div>
+    
+    <!-- Code Snippet Block -->
+    <ul class="text-left pl-6">
+      <li *ngFor="let reference of references" class="mb-2"> <!-- Added bottom margin for spacing -->
+        <a [href]="reference.url" target="_blank" class="text-blue-600 hover:underline">
+          {{ reference.title }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+

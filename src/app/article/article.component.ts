@@ -22,7 +22,10 @@ export class ArticleComponent implements OnInit {
 
     this.route.paramMap.subscribe(params => {
       this.title = params.get('systitle');
-      this.loadBlogPost(this.title);
+      if (this.title){
+        this.loadBlogPost(this.title);
+      }
+      
     });
   }
 

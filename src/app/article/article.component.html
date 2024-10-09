@@ -1,24 +1,10 @@
-<div class="container mx-auto my-8">
-  <h1 class="text-4xl font-bold">{{ article.title | titlecase }}</h1>
-  <article-img-caption
-  [imgSrc]="content.img.path" 
-  [caption]="content.img.caption">
-</article-img-caption>
+<h1 class="text-4xl font-bold mb-4">{{ article.title | titlecase }}</h1>
 
-<app-article-section *ngFor="let section of content.sections"
-[heading]="section.heading" 
-  [paragraphs]="section.paragraphs">
-></app-article-section>
+<article-img-caption [imgSrc]="content.img.path" [caption]="content.img.caption"> </article-img-caption>
 
-<!-- <app-article-code-snippet></app-article-code-snippet> -->
+<app-article-section *ngFor="let section of content.sections; let i = index" [heading]="section.heading"
+  [paragraphs]="section.paragraphs" [sectionIndex]="i" [codeSnippets]="content.codes" [images]="content.images"></app-article-section>
 
+<app-article-references [references]="article.references"></app-article-references>
 
-<app-article-references
-[references]="article.references" 
-></app-article-references>
-
- <app-article-signature
- [authorName]="article.author" 
-  [publishedTimestamp]="article.publishedOn"></app-article-signature>
-
-</div>
+<app-article-signature [authorName]="article.author" [publishedTimestamp]="article.publishedOn"></app-article-signature>

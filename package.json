@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "check": "ng serve -o --watch",
+    "dev": "ng serve -o --watch --configuration development",
     "dstart": "ng serve --port=5200 --host 0.0.0.0",
     "start": "ng serve --host 0.0.0.0",
     "build": "ng build",
@@ -23,6 +23,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^17.2.0",
+    "@angular/cdk": "^17.3.10",
     "@angular/common": "^17.2.0",
     "@angular/compiler": "^17.2.0",
     "@angular/core": "^17.2.0",
