@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 
 @Injectable({
@@ -7,9 +7,18 @@ import { map, Observable } from 'rxjs';
 })
 export class ArticleService {
 
- 
+  private apiBaseUrl = 'https://api.writeonce.de/v1';
+  private headers: HttpHeaders; 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+   
+    const token = '4gX0kZ7hLqF3cW9s7TjD4vH8kB3vY8Qd';
+    this.headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json' 
+    });
+
+   }
 
   getArticles(): Observable<any> {
     return this.http.get('assets/articles.json');
@@ -17,26 +26,9 @@ export class ArticleService {
 
   getArticlesBySysTitle(systitle: string): Observable<any> {
 
-    return this.getArticles().pipe(
-      map((articles: any[]) => {
-        // Find the article by title
-        return articles.find((article: any) => article.systitle === systitle);
-      })
-    )
+    return this.http.get(`${this.apiBaseUrl}/article/${systitle}`,{ headers: this.headers });
 
   }
 
-  // getCodeSnipets(systitle: string,sectionIndex: number, paragraphIndex: number): Observable<any> {
-
-  //  return this.getArticlesBySysTitle(systitle).pipe(
-
-  //   map ((article:any)=>{
-
-  //     return article.content.codes
-
-  //   })
-
-  //   )
-    
-  // }
+  
 }

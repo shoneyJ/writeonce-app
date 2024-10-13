@@ -29,11 +29,11 @@ export class ArticleComponent implements OnInit {
     });
   }
 
-  loadBlogPost(systitle: string | null): void {
+  loadBlogPost(systitle: string): void {
  
-    this.articleService.getArticles().subscribe(articles => {
+    this.articleService.getArticlesBySysTitle(systitle).subscribe(resp => {
       // Find the article by title
-      this.article = articles.find((article: any) => article.systitle === systitle);
+      this.article = resp;
       this.content = this.article.content;
     });
     
