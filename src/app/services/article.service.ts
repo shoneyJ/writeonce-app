@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,14 @@ export class ArticleService {
 
   getArticlesBySysTitle(systitle: string): Observable<any> {
 
-    return this.http.get(`${this.apiBaseUrl}/article/${systitle}`,{ headers: this.headers });
+    if (environment.production){
+      return this.http.get(`${this.apiBaseUrl}/article/${systitle}`,{ headers: this.headers });
+
+    }else {
+     return this.http.get(`assets/writeonce-articles/${systitle}.json`);
+    }
+
+   
 
   }
 
