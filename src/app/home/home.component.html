@@ -1,9 +1,42 @@
+<main class="flex-1 bg-gray-100 py-6">
+  <div class="mb-4">
+    <input 
+        type="text" 
+        [(ngModel)]="searchTerm" 
+        (input)="filterArticles()" 
+        placeholder="Search articles..." 
+        class="border border-gray-300 p-2 rounded w-full"
+    />
+</div>
+  <app-summary-card *ngFor="let article of articles; let i = index" 
+  [router]="article.router"
+  [title]="article.title"
+  [introduction]="article.introduction"
+  [tags]="article.tags">
+</app-summary-card>
 
-  <main class="flex-1 bg-gray-100 py-6">
-    <div class="container mx-auto">
+ <!-- Pagination Controls -->
+ <div class="flex justify-between items-center mt-4">
+  <button 
+      (click)="previousPage()" 
+      [disabled]="currentPage === 1" 
+      class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50">
+      Previous
+  </button>
+  
+  <span>Page {{ currentPage }} of {{ totalPages }}</span>
+  
+  <button 
+      (click)="nextPage()" 
+      [disabled]="currentPage === totalPages" 
+      class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50">
+      Next
+  </button>
+</div>
+  <!-- <div class="container mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         
-        <!-- Tech Panel -->
+      
         <div class="bg-white rounded-lg shadow-lg overflow-hidden">
           
           <img src="https://api.writeonce.de/image/Tech" alt="Tech Image" class="w-full h-48 object-cover">
@@ -28,7 +61,7 @@
           </ul>
         </div>
   
-        <!-- Food Panel
+        
         <div class="bg-white rounded-lg shadow-lg overflow-hidden">
           <img src="" alt="Food Image" class="w-full h-48 object-cover">
           <div class="p-4">
@@ -56,9 +89,9 @@
           
           
         </div> -->
-  
-        <!-- Travel Panel -->
-        <!-- <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+
+  <!-- Travel Panel -->
+  <!-- <div class="bg-white rounded-lg shadow-lg overflow-hidden">
           <img src="https://api.writeonce.de/image/Landscape" alt="Travel Image" class="w-full h-48 object-cover">
           <div class="p-4">
             <h3 class="text-xl font-bold mb-2">Travel</h3>
@@ -71,9 +104,8 @@
               </a>
             </li>
           </ul>
-        </div> -->
+        </div> 
   
       </div>
-    </div>
-  </main>
-
+    </div> -->
+</main>
