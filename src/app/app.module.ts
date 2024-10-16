@@ -1,4 +1,4 @@
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -23,33 +23,37 @@ import { ArticleSignatureComponent } from './article/article-signature/article-s
 import { ArticleReferencesComponent } from './article/article-references/article-references.component';
 import { ArticleCodeSnippetComponent } from './article/article-code-snippet/article-code-snippet.component';
 import { ScreenShotImageComponent } from './article/screen-shot-image/screen-shot-image.component';
-import { ExcalidrawReactComponent } from './excalidraw-react/excalidraw-react.component';
-import { ConfigService } from './services/config.service';
 
 
 
-@NgModule({ declarations: [
-        AppComponent,
-        NavigationBarComponent,
-        ArticleComponent,
-        HeaderComponent,
-        FooterComponent,
-        AboutComponent,
-        ContactComponent,
-        HomeComponent,
-        RepositoryListComponent,
-        ArticleImgCaptionComponent,
-        ArticleSectionComponent,
-        ArticleSignatureComponent,
-        ArticleReferencesComponent,
-        ArticleCodeSnippetComponent,
-        ScreenShotImageComponent,
-        ExcalidrawReactComponent
-    ],
-    bootstrap: [AppComponent], imports: [BrowserModule,
-        AppRoutingModule,
-        FontAwesomeModule,
-        FormsModule], providers: [provideHttpClient(withInterceptorsFromDi()),ConfigService] })
+@NgModule({
+  declarations: [
+    AppComponent,
+    NavigationBarComponent,
+    ArticleComponent,
+    HeaderComponent,
+    FooterComponent,
+    AboutComponent,
+    ContactComponent,
+    HomeComponent,
+    RepositoryListComponent,
+    ArticleImgCaptionComponent,
+    ArticleSectionComponent,
+    ArticleSignatureComponent,
+    ArticleReferencesComponent,
+    ArticleCodeSnippetComponent,
+    ScreenShotImageComponent
+  ],
+  imports: [
+    BrowserModule, 
+    HttpClientModule,
+    AppRoutingModule,
+    FontAwesomeModule,
+    FormsModule	
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
 export class AppModule { 
   constructor(library: FaIconLibrary) {
     library.addIcons(faEnvelope, faPhone, faLinkedinBrands);

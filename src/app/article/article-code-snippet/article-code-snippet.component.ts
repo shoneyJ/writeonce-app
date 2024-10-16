@@ -1,4 +1,6 @@
 import { Component, AfterViewInit, Input, OnInit} from '@angular/core';
+import 'prismjs';
+import 'prismjs/themes/prism-tomorrow.css'; 
 import {Clipboard} from '@angular/cdk/clipboard';
 import { faCopy } from '@fortawesome/free-solid-svg-icons';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
