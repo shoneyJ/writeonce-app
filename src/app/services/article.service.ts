@@ -8,15 +8,14 @@ import { environment } from '../../environments/environment';
 })
 export class ArticleService {
 
-  private apiBaseUrl = 'https://api.writeonce.de/v1';
+  private apiBaseUrl = 'https://api.writeonce.de';
   private headers: HttpHeaders; 
 
   constructor(private http: HttpClient) {
    
     const token = '4gX0kZ7hLqF3cW9s7TjD4vH8kB3vY8Qd';
     this.headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json' 
+      'Authorization': `Bearer ${token}` 
     });
 
    }
