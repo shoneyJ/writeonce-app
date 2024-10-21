@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "dev": "ng serve -o --watch --configuration development",
+    "devdoc": "ng serve --host 0.0.0.0 --watch --configuration development",
     "dstart": "ng serve --port=5200 --host 0.0.0.0",
     "start": "ng serve --host 0.0.0.0",
     "build": "ng build",
@@ -36,6 +37,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "jest-editor-support": "*",
+    "marked": "^14.1.3",
     "prismjs": "^1.29.0",
     "run-script-os": "*",
     "rxjs": "~7.8.0",

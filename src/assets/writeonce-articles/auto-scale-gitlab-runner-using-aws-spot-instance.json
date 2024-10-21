@@ -28,21 +28,21 @@
         "codes": [
             {
                 "language": "bash",
-                "snippet": "docker-machine create \n --driver=amazonec2 \n --amazonec2-access-key= \n --amazonec2-ssh-user=ubuntu \n --amazonec2-keypair-name=myedu  \n --amazonec2-secret-key= \n --amazonec2-region=eu-central-1 \n --amazonec2-vpc-id= \n --amazonec2-subnet-id= \n --amazonec2-zone= \n --amazonec2-use-private-address=false \n --amazonec2-tags=runner-manager-name,gitlab-aws-autoscaler,gitlab,true,gitlab-runner-autoscale,true \n --amazonec2-security-group=gitlab-runner-via-writeonce \n --amazonec2-instance-type=t2.micro \n --amazonec2-request-spot-instance=true \n --amazonec2-spot-price=0.005 test-gitlab",
+                "snippet": "testreadme",
                 "title": "Test if docker machine works",
                 "sectionIndex": 1,
                 "paragraphIndex": 1
             },
             {
                 "language": "bash",
-                "snippet": "sudo nano /etc/gitlab-runner/config.toml",
+                "snippet": "testreadme",
                 "title": "Edit config.toml",
                 "sectionIndex": 1,
                 "paragraphIndex": 3
             },
             {
                 "language": "bash",
-                "snippet": " [runners.machine] \n     IdleCount = 0  \n     IdleScaleFactor = 0.0  \n     IdleCountMin = 0  \n     IdleTime = 1800  \n     MaxBuilds = 10  \n    MachineDriver = 'amazonec2'  \n     MachineName = 'gitlab-docker-machine-%s'  \n     MachineOptions =",
+                "snippet": "testreadme",
                 "title": "keep IdleCount to 0 to spawn the instance on demand",
                 "sectionIndex": 1,
                 "paragraphIndex": 4

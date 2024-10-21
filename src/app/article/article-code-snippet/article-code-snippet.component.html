@@ -10,8 +10,11 @@
     </div>
     
     <!-- Code Snippet Block -->
-    <pre class="text-left bg-gray-100 p-4 rounded text-sm overflow-x-auto">
+    <!-- <pre class="text-left bg-gray-100 p-4 rounded text-sm overflow-x-auto">
       <code>{{ codeSnippet }}</code>
-    </pre>
+    </pre> -->
+    
+    <div [innerHTML]="markdownContent"></div>
+
   </div>
 </div>

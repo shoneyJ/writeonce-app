@@ -37,5 +37,19 @@ export class ArticleService {
 
   }
 
+
+  getMarkdown(path: string): Observable<string> {
+
+    if (environment.production){
+      return this.http.get(`${this.apiBaseUrl}/article/${path}`,{ responseType: 'text' });
+
+    }else {
+     return this.http.get(`assets/writeonce-articles/${path}.md`,{ responseType: 'text' });
+    }
+
+   
+
+  }
+
   
 }

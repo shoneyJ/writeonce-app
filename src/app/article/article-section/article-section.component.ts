@@ -32,7 +32,7 @@ export class ArticleSectionComponent implements AfterViewInit {
 
         if (container){
         const componentRef = container.createComponent(ArticleCodeSnippetComponent);
-        componentRef.instance.codeSnippet = snippet.snippet;
+        componentRef.instance.inputMarkdownContentPath = snippet.snippet;
         componentRef.instance.codeLang = snippet.language;
         componentRef.instance.title = snippet.title;
         }

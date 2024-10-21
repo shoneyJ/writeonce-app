@@ -10,7 +10,6 @@ import { Subscription } from 'rxjs';
   styleUrl: './article.component.css'
 })
 export class ArticleComponent implements OnInit ,AfterViewInit  {
-  title: string | null = null;
   article: any;
   content: any;
   constructor(
@@ -26,9 +25,9 @@ export class ArticleComponent implements OnInit ,AfterViewInit  {
   ngOnInit(): void {
 
     this.route.paramMap.subscribe(async (params) => {
-      this.title = params.get('systitle');
-      if (this.title){
-       await this.loadBlogPost(this.title);
+      const title = params.get('systitle');
+      if (title){
+       await this.loadBlogPost(title);
        
 
       }
