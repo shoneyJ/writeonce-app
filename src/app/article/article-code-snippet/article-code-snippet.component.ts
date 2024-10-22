@@ -4,6 +4,7 @@ import { faCopy } from '@fortawesome/free-solid-svg-icons';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { ArticleService } from '../../services/article.service';
 import { marked } from 'marked';
+import Prism from 'prismjs';
 
 @Component({
   selector: 'app-article-code-snippet',
@@ -31,6 +32,7 @@ export class ArticleCodeSnippetComponent implements  OnInit {
   ngOnInit(): void {
     this.initCopyBtn();
     this.markdownContentPath = this.inputMarkdownContentPath;
+    this.configureMarkedRenderer();
   }
   
   // ngAfterViewInit(): void {
@@ -38,6 +40,21 @@ export class ArticleCodeSnippetComponent implements  OnInit {
   //    (window as any).Prism.highlightAll();
   // }
  
+  configureMarkedRenderer() {
+    const renderer = new marked.Renderer();
+
+    // Override the code block renderer to use PrismJS for syntax highlighting
+    renderer.code = (code: string, language: string) => {
+      const validLanguage = Prism.languages[language] ? language : 'markup';
+      const highlightedCode = Prism.highlight(code, Prism.languages[validLanguage], validLanguage);
+      return `<pre class="language-${validLanguage}"><code class="language-${validLanguage}">${highlightedCode}</code></pre>`;
+    };
+
+    marked.setOptions({
+      renderer
+    });
+  }
+
 
 private set markdownContentPath(path: string){
 

@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -24,38 +24,35 @@ import { ArticleReferencesComponent } from './article/article-references/article
 import { ArticleCodeSnippetComponent } from './article/article-code-snippet/article-code-snippet.component';
 import { ScreenShotImageComponent } from './article/screen-shot-image/screen-shot-image.component';
 import { SummaryCardComponent } from './article/summary-card/summary-card.component';
+import { MarkdownModule } from 'ngx-markdown';
 
 
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    NavigationBarComponent,
-    ArticleComponent,
-    HeaderComponent,
-    FooterComponent,
-    AboutComponent,
-    ContactComponent,
-    HomeComponent,
-    RepositoryListComponent,
-    ArticleImgCaptionComponent,
-    ArticleSectionComponent,
-    ArticleSignatureComponent,
-    ArticleReferencesComponent,
-    ArticleCodeSnippetComponent,
-    ScreenShotImageComponent,
-    SummaryCardComponent
-  ],
-  imports: [
-    BrowserModule, 
-    HttpClientModule,
-    AppRoutingModule,
-    FontAwesomeModule,
-    FormsModule	
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        NavigationBarComponent,
+        ArticleComponent,
+        HeaderComponent,
+        FooterComponent,
+        AboutComponent,
+        ContactComponent,
+        HomeComponent,
+        RepositoryListComponent,
+        ArticleImgCaptionComponent,
+        ArticleSectionComponent,
+        ArticleSignatureComponent,
+        ArticleReferencesComponent,
+        ArticleCodeSnippetComponent,
+        ScreenShotImageComponent,
+        SummaryCardComponent
+    ],
+    bootstrap: [AppComponent],
+     imports: [BrowserModule,
+        AppRoutingModule,
+        FontAwesomeModule,
+        FormsModule,
+        MarkdownModule.forRoot()],
+     providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { 
   constructor(library: FaIconLibrary) {
     library.addIcons(faEnvelope, faPhone, faLinkedinBrands);
