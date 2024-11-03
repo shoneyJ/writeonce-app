@@ -1,5 +1,5 @@
-<main class="flex-1 bg-gray-100 py-6">
-  <div class="mb-4">
+<main class="flex-1 bg-gray-50 py-6">
+  <!-- <div class="mb-4">
     <input 
         type="text" 
         [(ngModel)]="searchTerm" 
@@ -7,7 +7,7 @@
         placeholder="Search articles..." 
         class="border border-gray-300 p-2 rounded w-full"
     />
-</div>
+</div> -->
   <app-summary-card *ngFor="let article of articles; let i = index" 
   [router]="article.router"
   [title]="article.title"
@@ -16,11 +16,11 @@
 </app-summary-card>
 
  <!-- Pagination Controls -->
- <div class="flex justify-between items-center mt-4">
+ <div class="p-4  flex justify-between items-center mt-4">
   <button 
       (click)="previousPage()" 
       [disabled]="currentPage === 1" 
-      class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50">
+      class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-teal-500 disabled:opacity-50">
       Previous
   </button>
   
@@ -29,7 +29,7 @@
   <button 
       (click)="nextPage()" 
       [disabled]="currentPage === totalPages" 
-      class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50">
+      class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-teal-500 disabled:opacity-50">
       Next
   </button>
 </div>

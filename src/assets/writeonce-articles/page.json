@@ -1,0 +1,150 @@
+[{
+    "title": "title1",
+    "systitle": "auto-scale-gitlab-runner-using-aws-spot-instance",
+    "content": {
+        "sections": [
+            {
+                "heading": "Introduction",
+                "paragraphs": [
+                    "Gitlab runner auto scaling for CI / CD pipeline using AWS EC2 is a great option to spawn the instances based on the number of jobs that needs to scheduled. Understanding this article requires the reader to have basic understanding of gitlab and AWS.",
+                    "Reader can follow the reference links to setup the AWS instance network, security policies. Also keep your amazonec2-access-key, amazonec2-secret-key ready."
+                ]
+            }],
+      "tags": ["test1"] 
+    }   
+},
+{
+    "title": "title1",
+    "systitle": "auto-scale-gitlab-runner-using-aws-spot-instance",
+    "content": {
+        "sections": [
+            {
+                "heading": "Introduction",
+                "paragraphs": [
+                    "Gitlab runner auto scaling for CI / CD pipeline using AWS EC2 is a great option to spawn the instances based on the number of jobs that needs to scheduled. Understanding this article requires the reader to have basic understanding of gitlab and AWS.",
+                    "Reader can follow the reference links to setup the AWS instance network, security policies. Also keep your amazonec2-access-key, amazonec2-secret-key ready."
+                ]
+            }],
+      "tags": ["test1"] 
+    }   
+},
+{
+    "title": "title1",
+    "systitle": "auto-scale-gitlab-runner-using-aws-spot-instance",
+    "content": {
+        "sections": [
+            {
+                "heading": "Introduction",
+                "paragraphs": [
+                    "Gitlab runner auto scaling for CI / CD pipeline using AWS EC2 is a great option to spawn the instances based on the number of jobs that needs to scheduled. Understanding this article requires the reader to have basic understanding of gitlab and AWS.",
+                    "Reader can follow the reference links to setup the AWS instance network, security policies. Also keep your amazonec2-access-key, amazonec2-secret-key ready."
+                ]
+            }],
+      "tags": ["test1"] 
+    }   
+},
+{
+    "title": "title1",
+    "systitle": "auto-scale-gitlab-runner-using-aws-spot-instance",
+    "content": {
+        "sections": [
+            {
+                "heading": "Introduction",
+                "paragraphs": [
+                    "Gitlab runner auto scaling for CI / CD pipeline using AWS EC2 is a great option to spawn the instances based on the number of jobs that needs to scheduled. Understanding this article requires the reader to have basic understanding of gitlab and AWS.",
+                    "Reader can follow the reference links to setup the AWS instance network, security policies. Also keep your amazonec2-access-key, amazonec2-secret-key ready."
+                ]
+            }],
+      "tags": ["test1"] 
+    }   
+},
+{
+    "title": "title1",
+    "systitle": "auto-scale-gitlab-runner-using-aws-spot-instance",
+    "content": {
+        "sections": [
+            {
+                "heading": "Introduction",
+                "paragraphs": [
+                    "Gitlab runner auto scaling for CI / CD pipeline using AWS EC2 is a great option to spawn the instances based on the number of jobs that needs to scheduled. Understanding this article requires the reader to have basic understanding of gitlab and AWS.",
+                    "Reader can follow the reference links to setup the AWS instance network, security policies. Also keep your amazonec2-access-key, amazonec2-secret-key ready."
+                ]
+            }],
+      "tags": ["test1"] 
+    }   
+},
+{
+    "title": "title1",
+    "systitle": "auto-scale-gitlab-runner-using-aws-spot-instance",
+    "content": {
+        "sections": [
+            {
+                "heading": "Introduction",
+                "paragraphs": [
+                    "Gitlab runner auto scaling for CI / CD pipeline using AWS EC2 is a great option to spawn the instances based on the number of jobs that needs to scheduled. Understanding this article requires the reader to have basic understanding of gitlab and AWS.",
+                    "Reader can follow the reference links to setup the AWS instance network, security policies. Also keep your amazonec2-access-key, amazonec2-secret-key ready."
+                ]
+            }],
+      "tags": ["test1"] 
+    }   
+}
+,{
+    "title": "title1",
+    "systitle": "auto-scale-gitlab-runner-using-aws-spot-instance",
+    "content": {
+        "sections": [
+            {
+                "heading": "Introduction",
+                "paragraphs": [
+                    "Gitlab runner auto scaling for CI / CD pipeline using AWS EC2 is a great option to spawn the instances based on the number of jobs that needs to scheduled. Understanding this article requires the reader to have basic understanding of gitlab and AWS.",
+                    "Reader can follow the reference links to setup the AWS instance network, security policies. Also keep your amazonec2-access-key, amazonec2-secret-key ready."
+                ]
+            }],
+      "tags": ["test1"] 
+    }   
+},
+{
+    "title": "title1",
+    "systitle": "auto-scale-gitlab-runner-using-aws-spot-instance",
+    "content": {
+        "sections": [
+            {
+                "heading": "Introduction",
+                "paragraphs": [
+                    "Gitlab runner auto scaling for CI / CD pipeline using AWS EC2 is a great option to spawn the instances based on the number of jobs that needs to scheduled. Understanding this article requires the reader to have basic understanding of gitlab and AWS.",
+                    "Reader can follow the reference links to setup the AWS instance network, security policies. Also keep your amazonec2-access-key, amazonec2-secret-key ready."
+                ]
+            }],
+      "tags": ["test1"] 
+    }   
+},
+{
+    "title": "title1",
+    "systitle": "auto-scale-gitlab-runner-using-aws-spot-instance",
+    "content": {
+        "sections": [
+            {
+                "heading": "Introduction",
+                "paragraphs": [
+                    "Gitlab runner auto scaling for CI / CD pipeline using AWS EC2 is a great option to spawn the instances based on the number of jobs that needs to scheduled. Understanding this article requires the reader to have basic understanding of gitlab and AWS.",
+                    "Reader can follow the reference links to setup the AWS instance network, security policies. Also keep your amazonec2-access-key, amazonec2-secret-key ready."
+                ]
+            }],
+      "tags": ["test1"] 
+    }   
+},
+{
+    "title": "title1",
+    "systitle": "auto-scale-gitlab-runner-using-aws-spot-instance",
+    "content": {
+        "sections": [
+            {
+                "heading": "Introduction",
+                "paragraphs": [
+                    "Gitlab runner auto scaling for CI / CD pipeline using AWS EC2 is a great option to spawn the instances based on the number of jobs that needs to scheduled. Understanding this article requires the reader to have basic understanding of gitlab and AWS.",
+                    "Reader can follow the reference links to setup the AWS instance network, security policies. Also keep your amazonec2-access-key, amazonec2-secret-key ready."
+                ]
+            }],
+      "tags": ["test1"] 
+    }   
+}]
