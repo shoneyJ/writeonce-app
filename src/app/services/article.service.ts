@@ -9,8 +9,8 @@ import { ArticleContent } from '../models/article';
 })
 export class ArticleService {
 
-  private dbApiBaseUrl = 'https://api.writeonce.de/db/';
-  private awsApiBaseUrl = 'https://api.writeonce.de/aws/';
+  private dbApiBaseUrl = 'https://api.writeonce.de/db';
+  private awsApiBaseUrl = 'https://api.writeonce.de/aws';
   private headers: HttpHeaders; 
 
   constructor(private http: HttpClient) {
