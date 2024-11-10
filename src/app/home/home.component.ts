@@ -30,11 +30,7 @@ export class HomeComponent implements OnInit {
  async ngOnInit(): Promise<void> {
   this.dbService.getArticlesCount().subscribe((resp)=>{
     this.totalArticles = resp.count;
-  })
-    this.getArticlePage((this.currentPage - 1) * this.itemsPerPage, this.itemsPerPage);
-   
-    
-    this.filteredArticles = this.articles;
+  })       
     this.updatePagination();
   }
 
