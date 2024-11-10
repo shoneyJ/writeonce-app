@@ -60,7 +60,7 @@ export class ArticleComponent implements OnInit ,AfterViewInit  {
       const res = this.articleService.getArticlesBySysTitle(systitle).subscribe(resp => {
         // Find the article by title
         this.article = resp;
-        this.content = this.article.content;
+        this.content = this.article.content.content;
       });
       resolve(res);
 

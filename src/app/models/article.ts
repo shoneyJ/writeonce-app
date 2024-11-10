@@ -9,7 +9,7 @@ export interface ArticlePage {
 export  interface ArticleContent {
     id: number;
     title: string;
-    systitle: string;
+    sys_title: string;
     content: Content;  
 }
 
@@ -58,7 +58,7 @@ interface Reference {
 export class Articles implements ArticleContent {
     id : number;
     title: string;
-    systitle: string;
+    sys_title: string;
     content: Content;
     author: string;
     publishedOn: number;
@@ -66,7 +66,7 @@ export class Articles implements ArticleContent {
     constructor(data: ArticleContent) {
         this.id = data.id
         this.title = data.title;
-        this.systitle = data.systitle;
+        this.sys_title = data.sys_title;
         this.content = data.content;
         this.author =this.content.author;
         this.publishedOn = this.content.publishedOn;
@@ -80,9 +80,9 @@ export class Articles implements ArticleContent {
        
         return {
             title: this.title,
-            router : `blog/${this.systitle}`,
+            router : `blog/${this.sys_title}`,
             introduction,
-            systitle: this.systitle,
+            systitle: this.sys_title,
             tags,
           
         };
