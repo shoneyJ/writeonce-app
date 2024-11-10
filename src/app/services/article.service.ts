@@ -40,7 +40,7 @@ export class ArticleService {
   getArticlesPagination(skip: number, limit: number): Observable<ArticleContent[]> {
 
     if (environment.production){
-      return this.http.get<ArticleContent[]>(`${this.dbApiBaseUrl}/article/${skip}/${limit}`, { headers: this.headers });
+      return this.http.get<ArticleContent[]>(`${this.dbApiBaseUrl}/articles/${skip}/${limit}`, { headers: this.headers });
 
     }else {
      return this.http.get<ArticleContent[]>(`assets/writeonce-articles/page.json`);
@@ -51,7 +51,7 @@ export class ArticleService {
   getArticlesCount(): Observable<any> {
 
     if (environment.production){
-      return this.http.get<ArticleContent[]>(`${this.dbApiBaseUrl}/article/count`, { headers: this.headers });
+      return this.http.get<ArticleContent[]>(`${this.dbApiBaseUrl}/articles/count`, { headers: this.headers });
 
     }else {
      return of({"count": 10});
