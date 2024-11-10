@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ArticleService } from '../services/article.service';
 import { Meta, Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { Content } from '../models/article';
+import { ArticleContent } from '../models/article';
 
 @Component({
   selector: 'app-article',
@@ -12,7 +12,7 @@ import { Content } from '../models/article';
 })
 export class ArticleComponent implements OnInit ,AfterViewInit  {
 
-  article: Content | undefined;
+  article: ArticleContent | undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -42,8 +42,8 @@ export class ArticleComponent implements OnInit ,AfterViewInit  {
       this.headTitle.setTitle(this.article.title);
 
       // Check if the article has tags and update meta keywords
-      if (this.article.tags && this.article.tags.length > 0) {
-       const keywords = this.article.tags.join(', ');
+      if (this.article.content.tags && this.article.content.tags.length > 0) {
+       const keywords = this.article.content.tags.join(', ');
        this.meta.updateTag({ name: 'keywords', content: keywords });
      } else {
        // Optionally, remove the keywords tag if no tags are present
