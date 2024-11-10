@@ -1,8 +1,22 @@
 export interface ArticlePage {
-    title: string,
-    router:string
+    title: string;
+    router:string;
     systitle: string;
     introduction :string;
+    tags : string [];
+  }
+
+  export interface ArticleModel {
+    title: string,
+    content :{
+        img: Image;
+        sections: Section[];
+        codes: Code[];
+        images: Image[];
+        };
+    author: string;
+    publishedOn: number;
+    references: Reference[];
     tags : string [];
   }
 
@@ -86,6 +100,19 @@ export class Articles implements ArticleContent {
             tags,
           
         };
+    }
+
+    toArticleModel() : ArticleModel {
+
+        return {
+            title : this.title,
+            author: this.content.author,
+            publishedOn: this.publishedOn,
+            references: this.content.references,
+            tags: this.content.tags,
+            content: this.content.content,
+        }
+
     }
     
 }

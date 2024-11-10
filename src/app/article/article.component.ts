@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ArticleService } from '../services/article.service';
 import { Meta, Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { ArticleContent } from '../models/article';
+import { ArticleModel ,Articles,ArticleContent } from '../models/article';
 
 @Component({
   selector: 'app-article',
@@ -12,7 +12,7 @@ import { ArticleContent } from '../models/article';
 })
 export class ArticleComponent implements OnInit ,AfterViewInit  {
 
-  article: ArticleContent | undefined;
+  article: ArticleModel | undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -42,8 +42,8 @@ export class ArticleComponent implements OnInit ,AfterViewInit  {
       this.headTitle.setTitle(this.article.title);
 
       // Check if the article has tags and update meta keywords
-      if (this.article.content.tags && this.article.content.tags.length > 0) {
-       const keywords = this.article.content.tags.join(', ');
+      if (this.article.tags && this.article.tags.length > 0) {
+       const keywords = this.article.tags.join(', ');
        this.meta.updateTag({ name: 'keywords', content: keywords });
      } else {
        // Optionally, remove the keywords tag if no tags are present
@@ -59,9 +59,9 @@ export class ArticleComponent implements OnInit ,AfterViewInit  {
   private async loadBlogPost(systitle: string) : Promise<Subscription> {
 
     return new Promise((resolve,reject)=>{
-      const res = this.articleService.getArticlesBySysTitle(systitle).subscribe(resp => {
+      const res = this.articleService.getArticlesBySysTitle(systitle).subscribe((resp :ArticleContent) => {
         // Find the article by title
-        this.article = resp.content;
+        this.article = new Articles(resp).toArticleModel();
       });
       resolve(res);
 
