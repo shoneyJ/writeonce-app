@@ -7,20 +7,25 @@ export interface ArticlePage {
   }
 
 export  interface ArticleContent {
+    id: number;
     title: string;
     systitle: string;
-    content: Content;
-    author: string;
-    publishedOn: number;
-    references: Reference[];
+    content: Content;  
 }
 
 interface Content {
+    
+   
+    content :{
     img: Image;
     sections: Section[];
     codes: Code[];
     images: Image[];
-    tags : string []
+    },
+    tags : string [];
+    author: string;
+    publishedOn: number;
+    references: Reference[];
 }
 
 interface Image {
@@ -51,6 +56,7 @@ interface Reference {
 
 
 export class Articles implements ArticleContent {
+    id : number;
     title: string;
     systitle: string;
     content: Content;
@@ -58,16 +64,17 @@ export class Articles implements ArticleContent {
     publishedOn: number;
     references: Reference[];
     constructor(data: ArticleContent) {
+        this.id = data.id
         this.title = data.title;
         this.systitle = data.systitle;
         this.content = data.content;
-        this.author = data.author;
-        this.publishedOn = data.publishedOn;
-        this.references = data.references;
+        this.author =this.content.author;
+        this.publishedOn = this.content.publishedOn;
+        this.references =this.content.references;
     }
     toArticlePageModel(): ArticlePage {
 
-        const introduction = this.content.sections[0].paragraphs[0];
+        const introduction = this.content.content.sections[0].paragraphs[0];
         const tags = this.content.tags;
        
        
