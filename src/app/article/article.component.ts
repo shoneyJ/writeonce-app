@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ArticleService } from '../services/article.service';
 import { Meta, Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
+import { Content } from '../models/article';
 
 @Component({
   selector: 'app-article',
@@ -10,8 +11,9 @@ import { Subscription } from 'rxjs';
   styleUrl: './article.component.css'
 })
 export class ArticleComponent implements OnInit ,AfterViewInit  {
-  article: any;
-  content: any;
+
+  article: Content | undefined;
+
   constructor(
     private route: ActivatedRoute,
     private articleService: ArticleService,
@@ -59,15 +61,11 @@ export class ArticleComponent implements OnInit ,AfterViewInit  {
     return new Promise((resolve,reject)=>{
       const res = this.articleService.getArticlesBySysTitle(systitle).subscribe(resp => {
         // Find the article by title
-        this.article = resp;
-        this.content = this.article.content.content;
+        this.article = resp.content;
       });
       resolve(res);
 
     });
- 
-    
-    
   
   }
 

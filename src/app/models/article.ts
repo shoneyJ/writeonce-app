@@ -13,7 +13,7 @@ export  interface ArticleContent {
     content: Content;  
 }
 
-interface Content {
+export interface Content {
     
    
     content :{
@@ -48,7 +48,7 @@ interface Code {
     paragraphIndex: number;
 }
 
-interface Reference {
+export interface Reference {
     title: string;
     url: string;
     dateAccessed: number;

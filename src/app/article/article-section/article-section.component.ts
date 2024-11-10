@@ -36,10 +36,7 @@ export class ArticleSectionComponent implements AfterViewInit {
         componentRef.instance.codeLang = snippet.language;
         componentRef.instance.title = snippet.title;
         }
-     
-
       }
-      
 
     });
   }
@@ -53,8 +50,7 @@ export class ArticleSectionComponent implements AfterViewInit {
         const componentRef = container.createComponent(ScreenShotImageComponent);
         componentRef.instance.imgSrc = image.path;
         componentRef.instance.caption = image.caption;
-        }
-     
+        }     
 
       }
       

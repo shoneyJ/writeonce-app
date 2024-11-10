@@ -1,10 +1,10 @@
 <div *ngIf="article">
 <h1 class="text-4xl font-bold mb-4">{{ article.title | titlecase }}</h1>
 
-<article-img-caption [imgSrc]="content.img.path" [caption]="content.img.caption"> </article-img-caption>
+<article-img-caption [imgSrc]="article.content.img.path" [caption]="article.content.img.caption"> </article-img-caption>
 
-<app-article-section *ngFor="let section of content.sections; let i = index" [heading]="section.heading"
-  [paragraphs]="section.paragraphs" [sectionIndex]="i" [codeSnippets]="content.codes" [images]="content.images"></app-article-section>
+<app-article-section *ngFor="let section of article.content.sections; let i = index" [heading]="section.heading"
+  [paragraphs]="section.paragraphs" [sectionIndex]="i" [codeSnippets]="article.content.codes" [images]="article.content.images"></app-article-section>
 
 <app-article-references [references]="article.references"></app-article-references>
 
