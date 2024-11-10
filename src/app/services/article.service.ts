@@ -29,7 +29,7 @@ export class ArticleService {
   getArticlesBySysTitle(systitle: string): Observable<any> {
 
     if (environment.production){
-      return this.http.get(`${this.dbApiBaseUrl}/article/${systitle}`, { headers: this.headers });
+      return this.http.get(`${this.dbApiBaseUrl}/article/title/${systitle}`, { headers: this.headers });
 
     }else {
      return this.http.get(`assets/writeonce-articles/${systitle}.json`);
