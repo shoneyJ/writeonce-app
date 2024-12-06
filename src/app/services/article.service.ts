@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, Observable, of } from 'rxjs';
 import { environment } from '../../environments/environment';
@@ -7,13 +8,14 @@ import { ArticleContent } from '../models/article';
 @Injectable({
   providedIn: 'root'
 })
-export class ArticleService {
+export class ArticleService implements OnInit {
 
   private dbApiBaseUrl = 'https://api.writeonce.de';
   private awsApiBaseUrl = 'https://api.writeonce.de/aws';
   private headers: HttpHeaders; 
+  private sys_title: String = "";
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,  private route: ActivatedRoute) {
    
     const token = '4gX0kZ7hLqF3cW9s7TjD4vH8kB3vY8Qd';
     this.headers = new HttpHeaders({
@@ -21,6 +23,12 @@ export class ArticleService {
     });
 
    }
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(async (params) => {     
+        this.sys_title = params.get('systitle') as String;      
+    });
+  }
+  
 
   getArticles(): Observable<any> {
     return this.http.get('assets/articles.json');
@@ -63,7 +71,7 @@ export class ArticleService {
   getMarkdown(fileName: string): Observable<string> {
 
     if (environment.production) {
-      return this.http.get(`${this.awsApiBaseUrl}/markdown/${fileName}`,
+      return this.http.get(`${this.awsApiBaseUrl}/markdown/${fileName}/${this.sys_title}`,
         { 
           responseType: 'text',
           headers: this.headers
