@@ -1,19 +1,22 @@
 import { Injectable, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map, Observable, of } from 'rxjs';
+import { map, Observable, of,BehaviorSubject } from 'rxjs';
+import { concatMap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { ArticleContent } from '../models/article';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ArticleService implements OnInit {
+export class ArticleService {
 
   private dbApiBaseUrl = 'https://api.writeonce.de';
   private awsApiBaseUrl = 'https://api.writeonce.de/aws';
   private headers: HttpHeaders; 
-  private sys_title: String = "";
+  private sysTitleSubject = new BehaviorSubject<string>(''); // Default value
+  private sysTitle: string = '';
+
 
   constructor(private http: HttpClient,  private route: ActivatedRoute) {
    
@@ -23,10 +26,15 @@ export class ArticleService implements OnInit {
     });
 
    }
-  ngOnInit(): void {
-    this.route.paramMap.subscribe(async (params) => {     
-        this.sys_title = params.get('systitle') as String;      
+   getSysTitle(): BehaviorSubject<string> {
+    this.route.paramMap.subscribe((params) => {
+      const title = params.get('systitle');
+      if (title) {
+        this.sysTitleSubject.next(title); // Update the BehaviorSubject with the value
+      }
     });
+
+    return this.sysTitleSubject; // Return the observable
   }
   
 
@@ -68,17 +76,25 @@ export class ArticleService implements OnInit {
   }
 
 
-  getMarkdown(fileName: string): Observable<string> {
+   getMarkdown(filePath: string): Observable<string> {
 
     if (environment.production) {
-      return this.http.get(`${this.awsApiBaseUrl}/markdown/${fileName}/${this.sys_title}`,
-        { 
-          responseType: 'text',
-          headers: this.headers
-       });
+     return this.getSysTitle().pipe(
+
+      concatMap((title)=>{
+          this.sysTitle = title;
+          return this.http.get(`${this.awsApiBaseUrl}/markdown/${filePath}`,
+            { 
+              responseType: 'text',
+              headers: this.headers
+           });
+        })
+
+      )
+      
 
     } else {
-     return this.http.get(`assets/writeonce-articles/${fileName}.md`, { responseType: 'text' });
+     return this.http.get(`assets/writeonce-articles/${filePath}.md`, { responseType: 'text' });
     }
   }
   

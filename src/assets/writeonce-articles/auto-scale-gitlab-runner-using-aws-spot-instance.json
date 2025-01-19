@@ -1,5 +1,5 @@
 {
-    "title": "Auto scale gitlab runner using AWS spot instance",
+    "title": "Auto scale test gitlab runner using AWS spot instance",
     "systitle": "auto-scale-gitlab-runner-using-aws-spot-instance",
     "content": {
         "img": {

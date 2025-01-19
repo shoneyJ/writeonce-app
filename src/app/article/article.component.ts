@@ -30,8 +30,6 @@ export class ArticleComponent implements OnInit ,AfterViewInit  {
       const title = params.get('systitle');
       if (title){
        await this.loadBlogPost(title);
-       
-
       }
       
     });
