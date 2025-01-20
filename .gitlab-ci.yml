@@ -15,7 +15,7 @@ build:
     - docker info  # Verify Docker is running
     - docker build -t ${IMAGE_NAME} .
 
-oush:
+push:
   stage: push
   image: docker:20.10.7
   services:
@@ -24,4 +24,4 @@ oush:
     - echo "Logging into Docker registry"  
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker push ${IMAGE_NAME} .
+    - docker push ${IMAGE_NAME}
