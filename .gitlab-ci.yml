@@ -1,24 +1,14 @@
-before_script:
-  # Install Docker in the Alpine container
-  - apk update && apk add --no-cache docker openrc
-  # Enable and start Docker service
-  - rc-update add docker boot
-  ##
-  ## Install ssh-agent if not already installed, it is required by Docker.
-  ## (change apt-get to yum if you use an RPM-based image)
-  ##
-  - apk add --no-cache openssh-client
-
-
 stages:
-  - build-deploy
+  - build
 variables: 
   IMAGE_NAME: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
-build-deploy:
-  stage: build-deploy  
+build:
+  stage: build
+  image: docker:20.10.7
+  services:
+    - docker:20.10.7-dind
+  before_script:
+    - echo "Setting up Docker environment"  
   script:
+    - docker info  # Verify Docker is running
     - docker build -t ${IMAGE_NAME} .
-    - eval $(ssh-agent -s)
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-    - docker run --rm ${IMAGE_NAME} sh -c "tar -czf - -C browser . " | ssh -o StrictHostKeyChecking=no deployer@writeonce.de 'docker exec -i writeonce-webserver tar -xzf - -C /usr/share/nginx/html/'
-    - ssh-agent -k
