@@ -26,6 +26,8 @@ push:
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker push ${IMAGE_NAME}
+  only:
+    - main
 
 deploy:
   stage: deploy
@@ -41,3 +43,5 @@ deploy:
     - docker pull ${IMAGE_NAME}
     - docker run --rm ${IMAGE_NAME} sh -c "tar -czf - -C browser . " | ssh -o StrictHostKeyChecking=no deployer@writeonce.de 'docker exec -i writeonce-webserver tar -xzf - -C /usr/share/nginx/html/'
     - ssh-agent -k
+  only:
+    - main
