@@ -1,6 +1,7 @@
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -51,6 +52,8 @@ import { MarkdownModule } from 'ngx-markdown';
         AppRoutingModule,
         FontAwesomeModule,
         FormsModule,
+        RouterLink,
+        RouterLinkActive,
         MarkdownModule.forRoot()],
      providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { 

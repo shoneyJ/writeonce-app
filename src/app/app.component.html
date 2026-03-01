@@ -1,14 +1,9 @@
-<body class="flex flex-col min-h-screen">
-  <app-header class="bg-teal-500 text-white p-4">
-    <!-- Header content -->
-  </app-header>
+<div class="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
+  <app-header></app-header>
   
-  <main class="flex-1 container mx-auto my-8">
-    <!-- Your main content goes here -->
+  <main class="flex-1">
     <router-outlet></router-outlet>
   </main>
-  <app-footer class="bg-teal-500 text-white p-4">
-    <!-- Footer content -->
-  </app-footer>
   
-</body>
+  <app-footer></app-footer>
+</div>

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-summary-card',
@@ -10,8 +11,4 @@ export class SummaryCardComponent {
   @Input() introduction: string = '';
   @Input() title: string = '';
   @Input() tags: string []= [];
- 
-
-
-
 }
