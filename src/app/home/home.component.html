@@ -1,111 +1,49 @@
-<main class="flex-1 bg-gray-50 py-6">
-  <!-- <div class="mb-4">
-    <input 
-        type="text" 
-        [(ngModel)]="searchTerm" 
-        (input)="filterArticles()" 
-        placeholder="Search articles..." 
-        class="border border-gray-300 p-2 rounded w-full"
-    />
-</div> -->
-  <app-summary-card *ngFor="let article of articles; let i = index" 
-  [router]="article.router"
-  [title]="article.title"
-  [introduction]="article.introduction"
-  [tags]="article.tags">
-</app-summary-card>
+<main class="flex-1">
+  <section class="bg-gradient-to-r from-teal-600 to-teal-800 dark:from-slate-800 dark:to-slate-900 text-white py-16">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Welcome to WriteOnce</h1>
+      <p class="text-lg md:text-xl text-teal-100 dark:text-slate-300 max-w-2xl mx-auto">
+        Sharing insights on technology, development, and innovation. 
+        Explore our articles and learn something new.
+      </p>
+    </div>
+  </section>
 
- <!-- Pagination Controls -->
- <div class="p-4  flex justify-between items-center mt-4">
-  <button 
-      (click)="previousPage()" 
-      [disabled]="currentPage === 1" 
-      class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-teal-500 disabled:opacity-50">
-      Previous
-  </button>
-  
-  <span>Page {{ currentPage }} of {{ totalPages }}</span>
-  
-  <button 
-      (click)="nextPage()" 
-      [disabled]="currentPage === totalPages" 
-      class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-teal-500 disabled:opacity-50">
-      Next
-  </button>
-</div>
-  <!-- <div class="container mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        
+  <section class="container mx-auto px-4 py-12">
+    <div class="mb-8">
+      <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-6">Latest Articles</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <app-summary-card 
+        *ngFor="let article of articles" 
+        [routerLink]="article.router"
+        [title]="article.title"
+        [introduction]="article.introduction"
+        [tags]="article.tags">
+      </app-summary-card>
+    </div>
+
+    <div *ngIf="articles.length === 0" class="text-center py-12">
+      <p class="text-slate-600 dark:text-slate-400">No articles found.</p>
+    </div>
+
+    <div class="flex justify-center items-center mt-8 space-x-4">
+      <button 
+          (click)="previousPage()" 
+          [disabled]="currentPage === 1" 
+          class="px-4 py-2 rounded-lg bg-teal-600 text-white hover:bg-teal-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
+          Previous
+      </button>
       
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-          
-          <img src="https://api.writeonce.de/image/Tech" alt="Tech Image" class="w-full h-48 object-cover">
-
-          <div class="p-4">
-            <h3 class="text-xl font-bold mb-2">Tech</h3>
-            <p class="text-gray-600">Explore the latest in technology, from AI advancements to the newest gadgets.</p>
-          </div>
-          <ul class="list-disc list-inside p-4">
-            <li class="mb-2">
-              <a routerLink="/projects" class="text-blue-600 hover:underline">
-                List of project repositories
-              </a>
-             
-            </li>
-            <li class="mb-2">
-             
-              <a routerLink="blog/auto-scale-gitlab-runner-using-aws-spot-instance" class="text-blue-600 hover:underline">
-                Auto scale gitlab runner using AWS spot instance
-              </a>
-            </li>
-          </ul>
-        </div>
-  
-        
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-          <img src="" alt="Food Image" class="w-full h-48 object-cover">
-          <div class="p-4">
-            <h3 class="text-xl font-bold mb-2">Food</h3>
-            <p class="text-gray-600">Discover delicious recipes, culinary tips.</p>
-          </div>
-          <div class="p-4">
-            <ul class="list-disc list-inside">
-              <li *ngFor="let item of items; let i = index" class="mb-2">
-                <ng-container *ngIf="!item.isEditing; else editMode">
-                  <a *ngIf="item.link" [routerLink]="item.link" class="text-blue-600 hover:underline">
-                    {{ item.text }}
-                  </a>
-                  <span *ngIf="!item.link">{{ item.text }}</span>
-                </ng-container>
-                <ng-template #editMode>
-                  <input [(ngModel)]="item.text" (blur)="saveItem(i)" class="border p-1" />
-                </ng-template>
-              </li>
-            </ul>
-            <button (click)="addItem()" class="text-blue-600 hover:underline mt-4">
-              <i class="fas fa-plus"></i> Add Item
-            </button>
-          </div>
-          
-          
-        </div> -->
-
-  <!-- Travel Panel -->
-  <!-- <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-          <img src="https://api.writeonce.de/image/Landscape" alt="Travel Image" class="w-full h-48 object-cover">
-          <div class="p-4">
-            <h3 class="text-xl font-bold mb-2">Travel</h3>
-            <p class="text-gray-600">Join us as we explore breathtaking destinations and travel experiences worldwide.</p>
-          </div>
-          <ul class="list-disc list-inside p-4">
-            <li class="mb-2">
-              <a routerLink="blog/trip-to-vienna" class="text-blue-600 hover:underline">
-                Trip to Vienna
-              </a>
-            </li>
-          </ul>
-        </div> 
-  
-      </div>
-    </div> -->
+      <span class="text-slate-600 dark:text-slate-400">Page {{ currentPage }} of {{ totalPages }}</span>
+      
+      <button 
+          (click)="nextPage()" 
+          [disabled]="currentPage === totalPages" 
+          class="px-4 py-2 rounded-lg bg-teal-600 text-white hover:bg-teal-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
+          Next
+      </button>
+    </div>
+  </section>
 </main>
