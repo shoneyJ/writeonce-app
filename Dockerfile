@@ -12,7 +12,7 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 # Generate the build of the application
-RUN npm run build --prod --output=dist
+RUN npm run build -- --output-path=dist/browser
 
 # Stage 2: Create a minimal image with only the dist folder
 FROM alpine:latest
@@ -21,4 +21,4 @@ FROM alpine:latest
 WORKDIR /app
 
 # Copy the built application from the previous stage
-COPY --from=build /app/dist ./
+COPY --from=build /app/dist/browser ./browser
