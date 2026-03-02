@@ -316,3 +316,145 @@ ghcr.io/shoneyj/writeonce-app:sha-abc123
 - [ ] Add health check after deployment
 - [ ] Add rollback capability
 - [ ] Add environment-specific deployments (staging/prod)
+
+---
+
+## Self-Hosted Runner (Optional)
+
+### Overview
+
+A self-hosted runner is software that runs on your own servers to execute GitHub Actions workflows. Similar to GitLab Runner, you control the infrastructure.
+
+### Benefits
+
+| GitHub-Hosted | Self-Hosted |
+|---------------|-------------|
+| Free for public repos | Your infrastructure costs |
+| Limited compute (Ubuntu/Windows/macOS) | Custom hardware, larger builds |
+| 6 hours max per job | No time limit |
+| No persistent storage | Persistent cache between runs |
+| Docker in Docker required for containers | Direct Docker access |
+
+### Setup Steps
+
+#### 1. Create a Personal Access Token (PAT)
+
+1. Go to **GitHub** → **Settings** → **Developer settings** → **Personal access tokens** → **Tokens (classic)**
+2. Click **Generate new token (classic)**
+3. Configure:
+   - **Note**: `self-hosted-runner`
+   - **Expiration**: 90 days (or custom)
+   - **Scopes**: `repo` (full control)
+4. Copy the generated token
+
+#### 2. Add Runner to Your Server
+
+On your server (`writeonce.de`):
+
+```bash
+# Create runner directory
+mkdir -p ~/actions-runner && cd ~/actions-runner
+
+# Download runner
+curl -o actions-runner.tar.gz -L https://github.com/actions/runner/releases/download/v2.317.0/actions-runner-linux-x64-2.317.0.tar.gz
+tar -xzf actions-runner.tar.gz
+
+# Configure runner
+./config.sh --url https://github.com/shoneyJ/writeonce-app --token YOUR_PAT_TOKEN
+
+# Install as service
+sudo ./svc.sh install
+sudo ./svc.sh start
+
+# Check status
+./run.sh
+```
+
+#### 3. Update Workflow to Use Self-Hosted Runner
+
+Edit `.github/workflows/deploy.yml`:
+
+```yaml
+jobs:
+  build-and-push:
+    runs-on: self-hosted  # Use self-hosted runner
+    # ... rest of steps
+```
+
+Or create a specific label:
+
+```yaml
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest  # GitHub-hosted for build
+    # ...
+  
+  deploy:
+    runs-on: [self-hosted, linux]  # Use labeled runner
+    # ...
+```
+
+### Runner Labels
+
+When you configure the runner, it gets default labels. Add custom labels:
+
+```bash
+./config.sh --labels "linux,deploy,production"
+```
+
+Then use in workflow:
+
+```yaml
+runs-on: self-hosted,linux,production
+```
+
+### Updating the Runner
+
+```bash
+cd ~/actions-runner
+./svc.sh stop
+./svc.sh uninstall
+./bin/incremental-update.sh
+./svc.sh install
+./svc.sh start
+```
+
+### Removing a Runner
+
+```bash
+cd ~/actions-runner
+./svc.sh stop
+./svc.sh uninstall
+cd ..
+rm -rf ~/actions-runner
+```
+
+Also remove from GitHub:
+- Go to **Settings** → **Actions** → **Runners**
+- Click runner → **Delete**
+
+### Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| Runner not connecting | Check PAT token is valid and not expired |
+| Permission denied | Ensure user has correct file permissions |
+| Docker not available | Add user to docker group: `sudo usermod -aG docker $USER` |
+| Job stuck | Check runner logs: `~/actions-runner/_diag/` |
+
+### Security Considerations
+
+1. **PAT Token**: Keep secret, rotate regularly
+2. **Runner Isolation**: Don't run untrusted code
+3. **Network**: Runner can access your internal network
+4. **Secrets**: Use GitHub secrets, don't hardcode credentials
+
+### Comparison with GitLab Runner
+
+| Feature | GitLab Runner | GitHub Self-Hosted Runner |
+|---------|---------------|--------------------------|
+| Registration | Register with GitLab URL | PAT + repo URL |
+| Executors | docker, ssh, shell, etc. | Direct execution |
+| Tags | Yes | Yes |
+| Caching | Via config | Via workflow |
+| Auto-scaling | Yes (with Kubernetes) | Manual or via actions
